@@ -1,0 +1,50 @@
+<!-- <section class="user-cards">
+    <div class="grid-wrapper">
+        <input   
+        [(ngModel)]="userText" 
+        placeholder="Search users by ID, address, name..." 
+        autocomplete="off" >
+        <mat-card class="example-card" *ngFor = "let user of users | userPipe : userText">
+            <div *ngIf="!users.length">no data</div>
+            <mat-card-header>
+                <mat-card-title>{{user.id}}</mat-card-title>
+                <mat-card-subtitle>{{user.name}}</mat-card-subtitle>
+                <mat-card-subtitle *ngFor = "let purchased of user['items'] | userPipe : userText">
+                    {{purchased.product}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                {{user.pincode}}
+                </p>
+            </mat-card-content>
+        </mat-card>
+        <div class="wildcard" *ngIf="(users | userPipe: userText).length === 0">No Results found!</div>
+    </div> 
+</section> -->
+
+<section class="user-cards">
+    <div class="grid-wrapper">
+        <input   
+        [(ngModel)]="userText" 
+        placeholder="Search users by ID, address, name..." 
+        autocomplete="off" >
+        <mat-card class="example-card" *ngFor = "let user of users | userPipe : userText">
+            <div *ngIf="!users.length">no data</div>
+            <mat-card-header>
+                <mat-card-title><p><span [innerHTML]="user.id | highlight: userText"></span></p></mat-card-title>
+                <mat-card-subtitle><p><span [innerHTML]="user.name | highlight: userText"></span></p></mat-card-subtitle>
+                <mat-card-title *ngFor = "let purchased of user['items'] | userPipe : userText">
+                    <p><span [innerHTML]="purchased.product | highlight: userText"></span></p>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    <span [innerHTML]="user.pincode | highlight: userText"></span>
+                </p>
+            </mat-card-content>
+        </mat-card>
+        <div class="wildcard" *ngIf="(users | userPipe: userText).length === 0">No Results found!</div>
+    </div> 
+</section>
+        
